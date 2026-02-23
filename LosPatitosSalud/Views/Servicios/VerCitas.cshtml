@@ -1,0 +1,44 @@
+﻿@model List<LosPatitosSalud.Models.Cita>
+@{
+    ViewData["Title"] = "Citas del Servicio";
+}
+
+<h2>Citas del Servicio</h2>
+<a asp-action="Listar" class="btn btn-secondary mb-3">Volver a Servicios</a>
+
+@if (!Model.Any())
+{
+    <p class="text-muted">No hay citas registradas para este servicio.</p>
+}
+else
+{
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Nombre</th>
+                <th>Teléfono</th>
+                <th>Correo</th>
+                <th>Identificación</th>
+                <th>Monto Total</th>
+                <th>Fecha Nacimiento</th>
+                <th>Fecha Cita</th>
+                <th>Fecha Registro</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cita in Model)
+            {
+                <tr>
+                    <td>@cita.NombreDeLaPersona</td>
+                    <td>@cita.Telefono</td>
+                    <td>@cita.Correo</td>
+                    <td>@cita.Identificacion</td>
+                    <td>@cita.MontoTotal.ToString("C")</td>
+                    <td>@cita.FechaNacimiento.ToShortDateString()</td>
+                    <td>@cita.FechaDeLaCita.ToShortDateString()</td>
+                    <td>@cita.FechaDeRegistro.ToShortDateString()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

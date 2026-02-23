@@ -1,0 +1,34 @@
+﻿@model LosPatitosSalud.Models.Cita
+@{
+    ViewData["Title"] = "Detalles de Cita";
+}
+
+<h2>Detalles de Cita #@Model.Id</h2>
+
+@if (TempData["Exito"] != null)
+{
+    <div class="alert alert-success">@TempData["Exito"]</div>
+}
+
+<div class="card" style="max-width: 600px;">
+    <div class="card-header bg-primary text-white"><strong>Información del Paciente</strong></div>
+    <div class="card-body">
+        <p><strong>Nombre:</strong> @Model.NombreDeLaPersona</p>
+        <p><strong>Identificación:</strong> @Model.Identificacion</p>
+        <p><strong>Teléfono:</strong> @Model.Telefono</p>
+        <p><strong>Correo:</strong> @Model.Correo</p>
+        <p><strong>Fecha de Nacimiento:</strong> @Model.FechaNacimiento.ToShortDateString()</p>
+        <p><strong>Dirección:</strong> @Model.Direccion</p>
+    </div>
+    <div class="card-header bg-info text-white"><strong>Información del Servicio</strong></div>
+    <div class="card-body">
+        <p><strong>Servicio:</strong> @Model.Servicio?.Nombre</p>
+        <p><strong>Especialidad:</strong> @Model.Servicio?.NombreEspecialidad</p>
+        <p><strong>Especialista:</strong> @Model.Servicio?.Especialista</p>
+        <p><strong>Monto Total:</strong> @Model.MontoTotal.ToString("C")</p>
+        <p><strong>Fecha de la Cita:</strong> @Model.FechaDeLaCita.ToShortDateString()</p>
+        <p><strong>Fecha de Reservación:</strong> @Model.FechaDeRegistro.ToString("dd/MM/yyyy HH:mm")</p>
+    </div>
+</div>
+
+<a asp-action="Listar" class="btn btn-primary mt-3">Volver</a>

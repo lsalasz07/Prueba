@@ -1,0 +1,62 @@
+﻿@model LosPatitosSalud.Models.Servicio
+@{
+    ViewData["Title"] = "Editar Servicio";
+}
+
+<h2>Editar Servicio</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Editar" method="post">
+            @Html.AntiForgeryToken()
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="Especialidad" />
+            <input type="hidden" asp-for="FechaDeRegistro" />
+            <div class="mb-3">
+                <label asp-for="Nombre" class="form-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Descripcion" class="form-label"></label>
+                <textarea asp-for="Descripcion" class="form-control"></textarea>
+                <span asp-validation-for="Descripcion" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Monto" class="form-label"></label>
+                <input asp-for="Monto" class="form-control" type="number" step="0.01" />
+                <span asp-validation-for="Monto" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="IVA" class="form-label"></label>
+                <input asp-for="IVA" class="form-control" type="number" step="0.01" />
+                <span asp-validation-for="IVA" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Especialista" class="form-label"></label>
+                <input asp-for="Especialista" class="form-control" />
+                <span asp-validation-for="Especialista" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Clinica" class="form-label"></label>
+                <input asp-for="Clinica" class="form-control" />
+                <span asp-validation-for="Clinica" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Estado" class="form-label"></label>
+                <select asp-for="Estado" class="form-select">
+                    <option value="true">Activo</option>
+                    <option value="false">Inactivo</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-warning">Guardar Cambios</button>
+            <a asp-action="Listar" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

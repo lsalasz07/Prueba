@@ -1,0 +1,48 @@
+﻿@model List<LosPatitosSalud.Models.Servicio>
+@{
+    ViewData["Title"] = "Reservar Cita";
+}
+
+<h2>Servicios Disponibles</h2>
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-warning">@TempData["Error"]</div>
+}
+@if (TempData["Exito"] != null)
+{
+    <div class="alert alert-success">@TempData["Exito"]</div>
+}
+
+<form asp-action="Listar" method="get" class="d-flex gap-2 mb-4">
+    <input type="number" name="idCita" class="form-control w-auto" placeholder="Número de cita" />
+    <button type="submit" class="btn btn-primary">Buscar Cita</button>
+</form>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Nombre del Servicio</th>
+            <th>Especialidad</th>
+            <th>Especialista</th>
+            <th>Monto</th>
+            <th>Clínica</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var servicio in Model)
+        {
+            <tr>
+                <td>@servicio.Nombre</td>
+                <td>@servicio.NombreEspecialidad</td>
+                <td>@servicio.Especialista</td>
+                <td>@servicio.Monto.ToString("C")</td>
+                <td>@servicio.Clinica</td>
+                <td>
+                    <a asp-action="Reservar" asp-route-id="@servicio.Id" class="btn btn-success btn-sm">Reservar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

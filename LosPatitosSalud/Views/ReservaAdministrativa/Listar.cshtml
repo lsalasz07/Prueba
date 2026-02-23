@@ -1,0 +1,43 @@
+﻿@model List<LosPatitosSalud.Models.Cita>
+@{
+    ViewData["Title"] = "Reserva Administrativa";
+}
+
+<h2>Historial de Citas</h2>
+
+<form asp-action="Listar" method="get" class="d-flex gap-2 mb-4">
+    <input type="number" name="idServicio" value="@ViewBag.IdServicioFiltro"
+           class="form-control w-auto" placeholder="ID del servicio" />
+    <button type="submit" class="btn btn-primary">Filtrar</button>
+    <a asp-action="Listar" class="btn btn-secondary">Ver Todas</a>
+</form>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Nombre</th>
+            <th>Teléfono</th>
+            <th>Correo</th>
+            <th>Identificación</th>
+            <th>Monto Total</th>
+            <th>Fecha Nacimiento</th>
+            <th>Fecha Cita</th>
+            <th>Fecha Registro</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cita in Model)
+        {
+            <tr>
+                <td>@cita.NombreDeLaPersona</td>
+                <td>@cita.Telefono</td>
+                <td>@cita.Correo</td>
+                <td>@cita.Identificacion</td>
+                <td>@cita.MontoTotal.ToString("C")</td>
+                <td>@cita.FechaNacimiento.ToShortDateString()</td>
+                <td>@cita.FechaDeLaCita.ToShortDateString()</td>
+                <td>@cita.FechaDeRegistro.ToShortDateString()</td>
+            </tr>
+        }
+    </tbody>
+</table>
